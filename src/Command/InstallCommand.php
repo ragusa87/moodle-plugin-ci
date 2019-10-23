@@ -93,7 +93,8 @@ class InstallCommand extends Command
             ->addOption('not-names', null, InputOption::VALUE_REQUIRED, 'CSV of file names to exclude', $names)
             ->addOption('extra-plugins', null, InputOption::VALUE_REQUIRED, 'Directory of extra plugins to install', $extra)
             ->addOption('no-init', null, InputOption::VALUE_NONE, 'Prevent PHPUnit and Behat initialization')
-            ->addOption('no-clone', null, InputOption::VALUE_NONE, 'Prevent Cloning Moodle');
+            ->addOption('no-clone', null, InputOption::VALUE_NONE, 'Prevent Cloning Moodle')
+            ->addOption('no-config-rewrite', null, InputOption::VALUE_NONE, 'Prevent generating a new Moodle config.php file');
     }
 
     protected function initialize(InputInterface $input, OutputInterface $output)
@@ -172,6 +173,7 @@ class InstallCommand extends Command
         $factory->dumper     = $this->initializePluginConfigDumper($input);
         $factory->pluginsDir = $pluginsDir;
         $factory->noInit     = $input->getOption('no-init');
+        $factory->noConfigRewrite     = $input->getOption('no-config-rewrite');
         $factory->database   = $resolver->resolveDatabase(
             $input->getOption('db-type'),
             $input->getOption('db-name'),
