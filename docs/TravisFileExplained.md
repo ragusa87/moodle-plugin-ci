@@ -16,14 +16,15 @@ language: php
 sudo: true
 
 # Installs the required version of Firefox for Behat, an updated version
-# of PostgreSQL and extra APT packages. Java 8 is only required
-# for Mustache command.
+# of PostgreSQL and extra APT packages.
 addons:
   firefox: "47.0.1"
   postgresql: "9.4"
-  apt:
-    packages:
-      - openjdk-8-jre-headless
+
+# Ensure DB services are running.
+services:
+  - mysql
+  - postgresql
 
 # Cache NPM's and Composer's caches to speed up build times.
 cache:
