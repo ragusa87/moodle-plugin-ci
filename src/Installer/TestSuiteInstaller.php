@@ -202,7 +202,8 @@ class TestSuiteInstaller extends AbstractInstaller
             ->notName('version.php')
             ->notName('settings.php')
             ->notPath('lang')
-            ->notPath('vendor');
+            ->notPath('vendor')
+            ->sortByName();
 
         $plugin->context = 'phpunit'; // Bit of a hack, but ensure we respect PHPUnit ignores.
 
